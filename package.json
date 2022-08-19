@@ -1,16 +1,20 @@
 {
-  "name": "@ericz1803/react-google-calendar",
+  "name": "@ama-9/react-google-calendar",
   "version": "4.2.1",
   "description": "React Google Calendar Component",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "build": "./node_modules/.bin/babel src --out-dir ./dist --copy-files && cp ./{LICENSE,README.md,package.json} ./dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ericz1803/react-google-calendar.git"
+    "url": "git+https://github.com/ama-9/react-google-calendar.git"
   },
+  "publishConfig": {
+   "access": "restricted",
+   "registry": "https://npm.pkg.github.com/"
+ },
   "author": "Eric Zhou",
   "license": "MIT",
   "keywords": [
