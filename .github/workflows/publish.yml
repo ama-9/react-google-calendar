@@ -1,0 +1,50 @@
+name: publish
+
+env:
+   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on: 
+  workflow_dispatch:
+    branches:
+      - 'master'
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          registry-url: https://npm.pkg.github.com
+      
+      - name: install node_modules
+        run: npm install
+      
+      - name: build packages
+        run: npx ./node_modules/.bin/babel src --out-dir ./dist --copy-files && cp ./{LICENSE,README.md,package.json} ./dist"
+
+      - name: publish
+        run: npx can-npm-publish --verbose && npm publish || echo "No need to publish"
+        env:
+         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: set version to env
+        run: node -p -e '`VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
+
+      - name: add version tag
+        uses: pkgdeps/git-tag-action@v2
+        with:
+         version: ${{ env.VERSION }}
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         github_repo: ${{ github.repository }}
+         git_commit_sha: ${{ github.sha }}
+         git_tag_prefix: "v"
+      
+    
