@@ -25,7 +25,7 @@ jobs:
         run: npm install
       
       - name: build packages
-        run: npx ./node_modules/.bin/babel src --out-dir ./dist --copy-files && cp ./{LICENSE,README.md,package.json} ./dist"
+        run: npx ./node_modules/.bin/babel src --out-dir ./dist --copy-files && cp ./{LICENSE,README.md,package.json} ./dist
 
       - name: publish
         run: npx can-npm-publish --verbose && npm publish || echo "No need to publish"
