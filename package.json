@@ -1,16 +1,20 @@
 {
-  "name": "@ericz1803/react-google-calendar",
-  "version": "4.2.2",
+  "name": "@ama-9/react-google-calendar",
+  "version": "4.2.1",
   "description": "React Google Calendar Component",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "build": "./node_modules/.bin/babel src --out-dir ./dist --copy-files && cp ./{LICENSE,README.md,package.json} ./dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ericz1803/react-google-calendar.git"
+    "url": "git+https://github.com/ama-9/react-google-calendar.git"
   },
+  "publishConfig": {
+   "access": "restricted",
+   "registry": "https://npm.pkg.github.com/"
+ },
   "author": "Eric Zhou",
   "license": "MIT",
   "keywords": [
@@ -36,7 +40,7 @@
     "rrule": "^2.6.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.18.10",
+    "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.1",
     "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
@@ -47,7 +51,7 @@
     "babel-plugin-lodash": "^3.3.4",
     "jest": "^25.5.4",
     "jest-emotion": "^10.0.32",
-    "jest-transform-css": "^4.0.1",
+    "jest-transform-css": "^2.1.0",
     "react-test-renderer": "^16.14.0"
   },
   "jest": {
