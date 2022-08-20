@@ -22,8 +22,10 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          echo "registry=https://npm.pkg.github.com/ama-9 > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=$GITHUB_PAT" >> .npmrc
+          echo "registry=https://npm.pkg.github.com/ama-9" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_PAT" > .npmrc
+          echo "registry=https://registry.npmjs.org"  > .npmrc
+          echo "always-auth=false"  > .npmrc
           npm install
         env:
           GITHUB_PAT: ${{ secrets.REPO_READ_PAT }}
