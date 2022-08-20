@@ -19,6 +19,14 @@ jobs:
       
       - name: setup node
         uses: actions/setup-node@v3
+
+      - name: Install Dependencies
+        run: |
+          echo "registry=https://npm.pkg.github.com/ama-9 > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_PAT" >> .npmrc
+          npm install
+        env:
+          GITHUB_PAT: ${{ secrets.REPO_READ_PAT }}
       
       - name: install node_modules
         run: npm install
