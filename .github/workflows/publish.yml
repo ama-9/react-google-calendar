@@ -19,14 +19,18 @@ jobs:
       
       - name: setup node
         uses: actions/setup-node@v3
+        with:
+          node-version: 12.x
+          registry-url: 'https://npm.pkg.github.com'
 
       - name: Install Dependencies
         run: |
-          echo "registry=https://npm.pkg.github.com/ama-9 > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=$GITHUB_PAT" >> .npmrc
-          npm install
+          echo "registry=https://registry.npmjs.org"  > .npmrc
         env:
           GITHUB_PAT: ${{ secrets.REPO_READ_PAT }}
+
+      - name: add Dependencies 
+        run: echo "always-auth=false"  > .npmrc
       
       - name: install node_modules
         run: npm install
